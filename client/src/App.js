@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import './App.css'
 import Topbar from './Components/Topbar'
 import BookDialog from './Components/BookDialog'
-import BookTable from './Components/BookTable'
+import BooksTable from './Components/BooksTable'
+import BooksToReadTable from './Components/BooksToReadTable'
 import YearSelect from './Components/YearSelect'
 import Container from '@material-ui/core/Container';
 function App() {
@@ -27,8 +28,9 @@ function App() {
         <BookDialog/>
         <h2>Przeczytane książki</h2>
         <YearSelect books={books} selectedYear={selectedYear} setSelectedYear={setSelectedYear}/>
-        <BookTable books={books} selectedYear={selectedYear}/>
+        <BooksTable books={books} selectedYear={selectedYear}/>
         <h2>Książki do przeczytania</h2>
+        <BooksToReadTable books={books}/>
       </Container>
     </div>
   );

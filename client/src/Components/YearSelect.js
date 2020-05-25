@@ -33,14 +33,14 @@ export default function YearSelect({books, selectedYear, setSelectedYear}){
   return(
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="year-select-label">Rok</InputLabel>
+        <InputLabel id="year-select-label">Wybierz Rok</InputLabel>
         <Select
           labelId="year-select-label"
           id="year-select"
           value={selectedYear}
           onChange={handleChange}
         >
-          {years.map(year => (
+          {years.map((year,index) => (
             <MenuItem key={year} value={year}>{year}</MenuItem>
           ))}
           
