@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,31 +14,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BookTable() {
+export default function BookTable({books}) {
   const classes = useStyles();
-  const [books, setBooks] = useState([])
-  async function loadBooks(){
-    try {
-      const res = await fetch('/api/books')
-      const newBooks = await res.json()
-      console.log(newBooks)
-      setBooks(newBooks)
-    } catch (err) {
-      return err
-    }
-  }
+  
   function formatDateStringShort(dateString){
-    const date = new Date(dateString);
-    return date.toLocaleDateString('pl-pl', {
+    const dateOfRead = new Date(dateString);
+    return dateOfRead.toLocaleDateString('pl-pl', {
       //weekday: 'short',
       day: '2-digit',
       month: 'long',
       year: 'numeric'
     });
   };
-  useEffect(() => {
-    loadBooks()
-  },[])
+  
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -56,7 +44,7 @@ export default function BookTable() {
                 {book.name}
               </TableCell>
               <TableCell align="left">{book.author}</TableCell>
-              <TableCell align="left">{formatDateStringShort(book.date)}</TableCell>
+              <TableCell align="left">{formatDateStringShort(book.dateOfRead)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

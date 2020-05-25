@@ -10,7 +10,7 @@ export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [author, setAuthor] = React.useState('');
-  const [date, setDate] = React.useState();
+  const [dateOfRead, setDateOfRead] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,7 +24,7 @@ export default function FormDialog() {
     const newBook={
       name: name,
       author: author,
-      date: date
+      dateOfRead: dateOfRead
     }
 
     console.log(newBook)
@@ -41,7 +41,7 @@ export default function FormDialog() {
       console.log(data)
       setName('')
       setAuthor('')
-      setDate()
+      setDateOfRead()
       setOpen(false)
       return data
     } catch (err) {
@@ -76,15 +76,15 @@ export default function FormDialog() {
             onChange={e =>setAuthor(e.target.value)}
           />
           <TextField
-            id="date"
+            id="dateOfRead"
             label="Data przeczytania"
             type="date"
             defaultValue={"2020-05-20"}
             InputLabelProps={{
               shrink: true,
             }}
-            value={date}
-            onChange={e =>setDate(e.target.value)}
+            value={dateOfRead}
+            onChange={e =>setDateOfRead(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
