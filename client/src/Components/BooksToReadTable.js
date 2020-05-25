@@ -7,8 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
-
+import BookReadDialog from './BookReadDialog'
 const useStyles = makeStyles({
   table: {
     minWidth: 100,
@@ -30,7 +29,7 @@ export default function BooksToReadTable({books , selectedYear}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {books.filter(book => book.dateOfRead !== undefined).map((book,index) => ( 
+          {books.filter(book => !book.hasOwnProperty('dateOfRead')).map((book,index) => ( 
             <TableRow key={book.name}>
               <TableCell>{index+1}</TableCell>
               <TableCell component="th" scope="row">
@@ -38,7 +37,7 @@ export default function BooksToReadTable({books , selectedYear}) {
               </TableCell>
               <TableCell>{book.author}</TableCell>
               <TableCell>
-                <BookReadDialog />
+                <BookReadDialog book={book}/>
               </TableCell>
             </TableRow>
           ))}

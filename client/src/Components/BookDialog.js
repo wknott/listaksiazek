@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-export default function FormDialog() {
+export default function BookDialog() {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [author, setAuthor] = React.useState('');
