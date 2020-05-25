@@ -5,12 +5,18 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [author, setAuthor] = React.useState('');
   const [dateOfRead, setDateOfRead] = React.useState();
+  const [bookToRead, setBookToRead] = React.useState(true);
+
+  const handleChange = (event) => {
+    setBookToRead(event.target.checked);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,8 +32,6 @@ export default function FormDialog() {
       author: author,
       dateOfRead: dateOfRead
     }
-
-    console.log(newBook)
     try {
       const res = await fetch('/api/books', {
         method: 'POST',
@@ -76,6 +80,7 @@ export default function FormDialog() {
             onChange={e =>setAuthor(e.target.value)}
           />
           <TextField
+            disabled={!bookToRead}
             id="dateOfRead"
             label="Data przeczytania"
             type="date"
@@ -85,6 +90,17 @@ export default function FormDialog() {
             }}
             value={dateOfRead}
             onChange={e =>setDateOfRead(e.target.value)}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={bookToRead}
+                onChange={handleChange}
+                name="check"
+                color="primary"
+              />
+            }
+            label="Książka przeczytana"
           />
         </DialogContent>
         <DialogActions>

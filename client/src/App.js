@@ -25,8 +25,10 @@ function App() {
       <Topbar/>
       <Container>
         <BookDialog/>
+        <h2>Przeczytane książki</h2>
         <YearSelect books={books} selectedYear={selectedYear} setSelectedYear={setSelectedYear}/>
         <BookTable books={books} selectedYear={selectedYear}/>
+        <h2>Książki do przeczytania</h2>
       </Container>
     </div>
   );

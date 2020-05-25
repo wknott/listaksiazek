@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BookTable({books}) {
+export default function BookTable({books , selectedYear}) {
   const classes = useStyles();
   
   function formatDateStringShort(dateString){
@@ -32,19 +32,21 @@ export default function BookTable({books}) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
+            <TableCell>#</TableCell>
             <TableCell>Tytuł</TableCell>
-            <TableCell align="left">Autor</TableCell>
-            <TableCell align="left">Data</TableCell>
+            <TableCell>Autor</TableCell>
+            <TableCell>Data</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {books.map((book) => (
+          {books.filter(book => new Date(book.dateOfRead).getFullYear() === selectedYear).map((book,index) => ( 
             <TableRow key={book.name}>
+              <TableCell>{index+1}</TableCell>
               <TableCell component="th" scope="row">
                 {book.name}
               </TableCell>
-              <TableCell align="left">{book.author}</TableCell>
-              <TableCell align="left">{formatDateStringShort(book.dateOfRead)}</TableCell>
+              <TableCell>{book.author}</TableCell>
+              <TableCell>{formatDateStringShort(book.dateOfRead)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

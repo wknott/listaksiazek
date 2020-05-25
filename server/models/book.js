@@ -11,8 +11,7 @@ const bookSchema = new mongoose.Schema({
     required: true
   }, 
   dateOfRead: {
-    type: Date,
-    default: Date.now
+    type: Date
   }
 })
 

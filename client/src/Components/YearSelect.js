@@ -23,7 +23,7 @@ export default function YearSelect({books, selectedYear, setSelectedYear}){
   };
 
   function getYears(){
-    const years = new Set(books.map(book => new Date(book.dateOfRead).getFullYear()))
+    const years = new Set(books.filter(book=>book.dateOfRead !== undefined).map(book => new Date(book.dateOfRead).getFullYear()))
     setYears(Array.from(years).sort())
   }
 
