@@ -18,7 +18,7 @@ router.post('/', async(req,res) => {
   const book = new Book({
     name: req.body.name,
     author: req.body.author,
-    date: req.body.date
+    dateOfRead: req.body.dateOfRead
   })
   try{
     const newBook = await book.save()
@@ -35,8 +35,8 @@ router.patch('/:id', getBook, async (req,res) => {
   if (req.body.author !== null){
     res.book.author = req.body.author
   }
-  if (req.body.date !== null){
-    res.book.date = req.body.date
+  if (req.body.dateOfRead !== null){
+    res.book.dateOfRead = req.body.dateOfRead
   }
   try {
     const updatedBook = await res.book.save()

@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 const bookSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   author: { 
     type: String,
     required: true
   }, 
-  date: {
+  dateOfRead: {
     type: Date,
-    required:true,
     default: Date.now
   }
 })
