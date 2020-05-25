@@ -20,19 +20,34 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  function handleAdd(){
+  async function handleAdd(){
     const newBook={
       name: name,
       author: author,
       date: date
     }
-    console.log(newBook)
-    setName('')
-    setAuthor('')
-    setDate()
-    setOpen(false)
-  }
 
+    console.log(newBook)
+    try {
+      const res = await fetch('/api/books', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newBook) 
+      })
+      const data = await res.json()
+      console.log(data)
+      setName('')
+      setAuthor('')
+      setDate()
+      setOpen(false)
+      return data
+    } catch (err) {
+      return err
+    }
+  }
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
