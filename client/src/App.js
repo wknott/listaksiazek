@@ -13,6 +13,7 @@ function App() {
     try {
       const res = await fetch('/api/books')
       const newBooks = await res.json()
+      console.log(newBooks)
       setBooks(newBooks)
     } catch (err) {
       return err
@@ -25,6 +26,7 @@ function App() {
     <div>
       <Topbar/>
       <Container>
+        <br/>
         <BookDialog/>
         <h2>Przeczytane książki</h2>
         <YearSelect books={books} selectedYear={selectedYear} setSelectedYear={setSelectedYear}/>

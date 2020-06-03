@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 export default function BookDialog() {
   const [open, setOpen] = React.useState(false);
@@ -13,6 +14,7 @@ export default function BookDialog() {
   const [author, setAuthor] = React.useState('');
   const [dateOfRead, setDateOfRead] = React.useState();
   const [bookToRead, setBookToRead] = React.useState(true);
+  const [date,setDate] = React.useState(new Date())
 
   const handleChange = (event) => {
     setBookToRead(event.target.checked);
@@ -52,6 +54,7 @@ export default function BookDialog() {
       return err
     }
   }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -79,18 +82,21 @@ export default function BookDialog() {
             value={author}
             onChange={e =>setAuthor(e.target.value)}
           />
-          <TextField
-            disabled={!bookToRead}
-            id="dateOfRead"
-            label="Data przeczytania"
-            type="date"
-            defaultValue={"2020-05-20"}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={dateOfRead}
-            onChange={e =>setDateOfRead(e.target.value)}
-          />
+          <Grid>
+            <TextField
+              disabled={!bookToRead}
+              id="dateOfRead"
+              label="Data przeczytania"
+              type="date"
+              defaultValue={date.toISOString().substring(0,10)}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={dateOfRead}
+              onChange={e =>setDateOfRead(e.target.value)}
+            />
+          </Grid>
+          <Grid>
           <FormControlLabel
             control={
               <Checkbox
@@ -102,6 +108,7 @@ export default function BookDialog() {
             }
             label="Książka przeczytana"
           />
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

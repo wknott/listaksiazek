@@ -20,6 +20,7 @@ export default function YearSelect({books, selectedYear, setSelectedYear}){
   const [years, setYears] = useState([])
   const handleChange = (event) => {
     setSelectedYear(event.target.value)
+    console.log(event.target.value)
   };
 
   function getYears(){
@@ -40,6 +41,7 @@ export default function YearSelect({books, selectedYear, setSelectedYear}){
           value={selectedYear}
           onChange={handleChange}
         >
+            <MenuItem key={'key'} value={''}>Wszystkie książki</MenuItem> 
           {years.map((year,index) => (
             <MenuItem key={year} value={year}>{year}</MenuItem>
           ))}
