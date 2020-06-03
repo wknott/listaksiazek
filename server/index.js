@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 app.use(cors())
 const path = require('path')
-app.use(express.static(path.join(__dirname, '../client/build')))
+
 mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
@@ -15,16 +15,11 @@ app.use(express.json())
 
 const booksRouter = require('./routes/books')
 app.use('/api/books', booksRouter)
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'path/to/your/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
 
-app.get('/express_backend', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
+const buildPath = path.join(__dirname, '../client/build');
+app.use(express.static(buildPath));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(5000, () => console.log('Server Started'))
