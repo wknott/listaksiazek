@@ -39,7 +39,7 @@ export default function BookDialog({loadBooks}) {
       const data = await res.json()
       setName('')
       setAuthor('')
-      setDateOfRead()
+      setDateOfRead(new Date().toISOString().substring(0,10))
       setOpen(false)
       return data
     } catch (err) {
