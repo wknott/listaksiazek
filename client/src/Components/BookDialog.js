@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,16 +8,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-export default function BookDialog() {
+export default function BookDialog({loadBooks}) {
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState('');
   const [author, setAuthor] = React.useState('');
-  const [dateOfRead, setDateOfRead] = React.useState();
-  const [bookToRead, setBookToRead] = React.useState(true);
-  const [date,setDate] = React.useState(new Date())
+  const [dateOfRead, setDateOfRead] = React.useState(new Date().toISOString().substring(0,10));
+  const [bookRead, setBookRead] = React.useState(true);
 
   const handleChange = (event) => {
-    setBookToRead(event.target.checked);
+    setBookRead(event.target.checked);
   };
 
   const handleClickOpen = () => {
@@ -27,13 +26,7 @@ export default function BookDialog() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  async function handleAdd(){
-    const newBook={
-      name: name,
-      author: author,
-      dateOfRead: dateOfRead
-    }
+  async function postBook(newBook){
     try {
       const res = await fetch('/api/books', {
         method: 'POST',
@@ -44,7 +37,6 @@ export default function BookDialog() {
         body: JSON.stringify(newBook) 
       })
       const data = await res.json()
-      console.log(data)
       setName('')
       setAuthor('')
       setDateOfRead()
@@ -53,6 +45,24 @@ export default function BookDialog() {
     } catch (err) {
       return err
     }
+  }
+  
+  function handleAdd(){
+    if(bookRead){
+      const newBook={
+        name: name,
+        author: author,
+        dateOfRead: dateOfRead
+      }
+      postBook(newBook)
+    } else {
+      const newBook={
+        name: name,
+        author: author
+      }
+      postBook(newBook)
+    }
+    loadBooks();
   }
 
   return (
@@ -84,11 +94,11 @@ export default function BookDialog() {
           />
           <Grid>
             <TextField
-              disabled={!bookToRead}
+              disabled={!bookRead}
               id="dateOfRead"
               label="Data przeczytania"
               type="date"
-              defaultValue={date.toISOString().substring(0,10)}
+              defaultValue={dateOfRead}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -100,7 +110,7 @@ export default function BookDialog() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={bookToRead}
+                checked={bookRead}
                 onChange={handleChange}
                 name="check"
                 color="primary"

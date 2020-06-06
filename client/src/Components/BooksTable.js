@@ -42,8 +42,8 @@ export default function BooksTable({ books, selectedYear }) {
           {books
             .filter((book) =>
               selectedYear === ""
-                ? 1
-                : new Date(book.dateOfRead).getFullYear() === selectedYear
+                ? 1 && book.hasOwnProperty('dateOfRead')
+                : new Date(book.dateOfRead).getFullYear() === selectedYear && book.hasOwnProperty('dateOfRead')
             )
             .map((book, index) => (
               <TableRow key={book.name}>

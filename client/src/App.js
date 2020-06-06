@@ -13,7 +13,6 @@ function App() {
     try {
       const res = await fetch('/api/books')
       const newBooks = await res.json()
-      console.log(newBooks)
       setBooks(newBooks)
     } catch (err) {
       return err
@@ -27,12 +26,12 @@ function App() {
       <Topbar/>
       <Container>
         <br/>
-        <BookDialog/>
+        <BookDialog loadBooks={loadBooks}/>
         <h2>Przeczytane książki</h2>
         <YearSelect books={books} selectedYear={selectedYear} setSelectedYear={setSelectedYear}/>
         <BooksTable books={books} selectedYear={selectedYear}/>
         <h2>Książki do przeczytania</h2>
-        <BooksToReadTable books={books}/>
+        <BooksToReadTable books={books} loadBooks={loadBooks}/>
       </Container>
     </div>
   );

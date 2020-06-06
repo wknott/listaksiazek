@@ -5,7 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function BookReadDialog({book}) {
+export default function BookReadDialog({book, loadBooks}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -32,8 +32,8 @@ export default function BookReadDialog({book}) {
         body: JSON.stringify(changedBook) 
       })
       const data = await res.json()
-      console.log(data)
       setOpen(false)
+      loadBooks();
       return data
     } catch (err) {
       return err

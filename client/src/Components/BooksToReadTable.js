@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BooksToReadTable({books , selectedYear}) {
+export default function BooksToReadTable({books , loadBooks}) {
   const classes = useStyles();
 
   return (
@@ -37,7 +37,7 @@ export default function BooksToReadTable({books , selectedYear}) {
               </TableCell>
               <TableCell>{book.author}</TableCell>
               <TableCell>
-                <BookReadDialog book={book}/>
+                <BookReadDialog book={book} loadBooks={loadBooks}/>
               </TableCell>
             </TableRow>
           ))}

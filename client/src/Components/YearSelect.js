@@ -20,7 +20,6 @@ export default function YearSelect({books, selectedYear, setSelectedYear}){
   const [years, setYears] = useState([])
   const handleChange = (event) => {
     setSelectedYear(event.target.value)
-    console.log(event.target.value)
   };
 
   function getYears(){
