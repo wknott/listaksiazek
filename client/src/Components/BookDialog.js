@@ -41,6 +41,7 @@ export default function BookDialog({loadBooks}) {
       setAuthor('')
       setDateOfRead(new Date().toISOString().substring(0,10))
       setOpen(false)
+      loadBooks();
       return data
     } catch (err) {
       return err
@@ -62,7 +63,6 @@ export default function BookDialog({loadBooks}) {
       }
       postBook(newBook)
     }
-    loadBooks();
   }
 
   return (
