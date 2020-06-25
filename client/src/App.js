@@ -5,9 +5,11 @@ import BookDialog from "./Components/BookDialog";
 import BooksTable from "./Components/BooksTable";
 import BooksToReadTable from "./Components/BooksToReadTable";
 import YearSelect from "./Components/YearSelect";
+import TabPanel from "./Components/TabPanel";
 import Container from "@material-ui/core/Container";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+
 import { compareObjects } from "../src/utilities";
 function App() {
   const [books, setBooks] = useState([]);
@@ -33,21 +35,7 @@ function App() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  function TabPanel(props) {
-    const { children, value, index, ...other } = props;
 
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        {value === index && <div>{children}</div>}
-      </div>
-    );
-  }
   return (
     <div>
       <Topbar />
