@@ -1,37 +1,72 @@
-import React, {useState, useEffect} from 'react'
-import './App.css'
-import Topbar from './Components/Topbar'
-import BookDialog from './Components/BookDialog'
-import BooksTable from './Components/BooksTable'
-import BooksToReadTable from './Components/BooksToReadTable'
-import YearSelect from './Components/YearSelect'
-import Container from '@material-ui/core/Container';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Topbar from "./Components/Topbar";
+import BookDialog from "./Components/BookDialog";
+import BooksTable from "./Components/BooksTable";
+import BooksToReadTable from "./Components/BooksToReadTable";
+import YearSelect from "./Components/YearSelect";
+import Container from "@material-ui/core/Container";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+
 function App() {
-  const [books, setBooks] = useState([])
-  const [selectedYear, setSelectedYear] = useState('')
-  async function loadBooks(){
+  const [books, setBooks] = useState([]);
+  const [selectedYear, setSelectedYear] = useState("");
+  const [value, setValue] = useState(0);
+  async function loadBooks() {
     try {
-      const res = await fetch('/api/books')
-      const newBooks = await res.json()
-      setBooks(newBooks)
+      const res = await fetch("/api/books");
+      const newBooks = await res.json();
+      setBooks(newBooks);
     } catch (err) {
-      return err
+      return err;
     }
   }
   useEffect(() => {
-    loadBooks()
-  },[])
+    loadBooks();
+  }, []);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && <div>{children}</div>}
+      </div>
+    );
+  }
   return (
     <div>
-      <Topbar/>
+      <Topbar />
       <Container>
-        <br/>
-        <BookDialog loadBooks={loadBooks}/>
-        <h2>Przeczytane książki</h2>
-        <YearSelect books={books} selectedYear={selectedYear} setSelectedYear={setSelectedYear}/>
-        <BooksTable books={books} selectedYear={selectedYear}/>
-        <h2>Książki do przeczytania</h2>
-        <BooksToReadTable books={books} loadBooks={loadBooks}/>
+        <br />
+        <BookDialog loadBooks={loadBooks} />
+
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Książki przeczytane" />
+          <Tab label="Książki do przeczytania" />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <h2>Przeczytane książki</h2>
+          <YearSelect
+            books={books}
+            selectedYear={selectedYear}
+            setSelectedYear={setSelectedYear}
+          />
+          <BooksTable books={books} selectedYear={selectedYear} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <h2>Książki do przeczytania</h2>
+          <BooksToReadTable books={books} loadBooks={loadBooks} />
+        </TabPanel>
       </Container>
     </div>
   );
