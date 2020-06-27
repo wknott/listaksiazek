@@ -25,10 +25,11 @@ function App() {
       return err;
     }
   }
-  function sortBooks(books, key) {
+  const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
+    console.log(`sorted with key = ${key}`);
     setBooks(sortedBooks);
-  }
+  };
   useEffect(() => {
     loadBooks();
   }, []);
@@ -54,7 +55,11 @@ function App() {
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
           />
-          <BooksTable books={books} selectedYear={selectedYear} />
+          <BooksTable
+            books={books}
+            selectedYear={selectedYear}
+            sortBooks={sortBooks}
+          />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <h2>Książki do przeczytania</h2>
