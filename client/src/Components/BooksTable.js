@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -17,7 +17,19 @@ const useStyles = makeStyles({
 });
 
 export default function BooksTable({ books, selectedYear }) {
+  const [sortedField, setSortedField] = useState(null);
+  const [sortDirection, setSortDirection] = useState(false);
+  let sortedBooks = [...books];
   const classes = useStyles();
+  if (sortedField !== null) {
+    sortDirection
+      ? sortedBooks.sort(compareObjects(sortedField))
+      : sortedBooks.sort(compareObjects(sortedField, "desc"));
+  }
+  const setSortProperties = (field, direction) => {
+    setSortedField(field);
+    setSortDirection(direction);
+  };
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -25,24 +37,28 @@ export default function BooksTable({ books, selectedYear }) {
           <TableRow>
             <TableCell>#</TableCell>
             <TableCell>
-              <Button onClick={() => console.log("sortowanie po tytule")}>
-                Tytuł
+              <Button onClick={() => setSortProperties("name", !sortDirection)}>
+                Tytuł {sortDirection ? "↓" : "↑"}
               </Button>
             </TableCell>
             <TableCell>
-              <Button onClick={() => console.log("sortowanie po autorze")}>
-                Autor
+              <Button
+                onClick={() => setSortProperties("author", !sortDirection)}
+              >
+                Autor {sortDirection ? "↓" : "↑"}
               </Button>
             </TableCell>
             <TableCell>
-              <Button onClick={() => console.log("sortowanie po dacie")}>
-                Data
+              <Button
+                onClick={() => setSortProperties("dateOfRead", !sortDirection)}
+              >
+                Data {sortDirection ? "↓" : "↑"}
               </Button>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {books
+          {sortedBooks
             .filter((book) =>
               selectedYear === ""
                 ? 1 && book.hasOwnProperty("dateOfRead")
