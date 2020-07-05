@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import { compareObjects, formatDateStringShort } from "../utilities";
 
 const useStyles = makeStyles({
   table: {
@@ -15,17 +16,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BooksTable({ books, selectedYear, sortBooks }) {
+export default function BooksTable({ books, selectedYear }) {
   const classes = useStyles();
-  function formatDateStringShort(dateString) {
-    const dateOfRead = new Date(dateString);
-    return dateOfRead.toLocaleDateString("pl-pl", {
-      //weekday: 'short',
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
-  }
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -33,13 +25,17 @@ export default function BooksTable({ books, selectedYear, sortBooks }) {
           <TableRow>
             <TableCell>#</TableCell>
             <TableCell>
-              <Button onClick={() => sortBooks(books, "title")}>Tytuł</Button>
+              <Button onClick={() => console.log("sortowanie po tytule")}>
+                Tytuł
+              </Button>
             </TableCell>
             <TableCell>
-              <Button onClick={() => sortBooks(books, "author")}>Autor</Button>
+              <Button onClick={() => console.log("sortowanie po autorze")}>
+                Autor
+              </Button>
             </TableCell>
             <TableCell>
-              <Button onClick={() => sortBooks(books, "dateOfRead")}>
+              <Button onClick={() => console.log("sortowanie po dacie")}>
                 Data
               </Button>
             </TableCell>

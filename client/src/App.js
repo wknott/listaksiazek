@@ -27,7 +27,6 @@ function App() {
   }
   const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
-    console.log(`sorted with key = ${key}`);
     setBooks(sortedBooks);
   };
   useEffect(() => {
