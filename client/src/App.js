@@ -5,7 +5,7 @@ import BooksTable from "./Components/BooksTable";
 import BooksToReadTable from "./Components/BooksToReadTable";
 import YearSelect from "./Components/YearSelect";
 import TabPanel from "./Components/TabPanel";
-import Container from "@material-ui/core/Container";
+import Container from "./Container"
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -36,35 +36,36 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <Topbar />
       <Container>
-        <br />
-        <BookDialog loadBooks={loadBooks} />
-
-        <Tabs value={value} onChange={handleChange}>
-          <Tab label="Książki przeczytane" />
-          <Tab label="Książki do przeczytania" />
-        </Tabs>
-        <TabPanel value={value} index={0}>
-          <h2>Przeczytane książki</h2>
-          <YearSelect
-            books={books}
-            selectedYear={selectedYear}
-            setSelectedYear={setSelectedYear}
-          />
-          <BooksTable
-            books={books}
-            selectedYear={selectedYear}
-            sortBooks={sortBooks}
-          />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <h2>Książki do przeczytania</h2>
-          <BooksToReadTable books={books} loadBooks={loadBooks} />
-        </TabPanel>
+        <div>
+          <br />
+          <BookDialog loadBooks={loadBooks} />
+          <Tabs value={value} onChange={handleChange}>
+            <Tab label="Książki przeczytane" />
+            <Tab label="Książki do przeczytania" />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <h2>Przeczytane książki</h2>
+            <YearSelect
+              books={books}
+              selectedYear={selectedYear}
+              setSelectedYear={setSelectedYear}
+            />
+            <BooksTable
+              books={books}
+              selectedYear={selectedYear}
+              sortBooks={sortBooks}
+            />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <h2>Książki do przeczytania</h2>
+            <BooksToReadTable books={books} loadBooks={loadBooks} />
+          </TabPanel>
+        </div>
       </Container>
-    </div>
+    </>
   );
 }
 
