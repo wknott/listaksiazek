@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-import logo from '../book.svg'
+import logo from '../logo512.png';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -24,7 +24,7 @@ export default function Topbar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <img src={logo} alt='logo' width="50" height="50"/>
+            <img src={logo} alt='logo' width="50" height="50" />
           </IconButton>
           <Typography variant="h5" className={classes.title}>
             Lista książek
