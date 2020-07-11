@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import Header from "./Header";
 import Form from "./Form";
-import BookDialog from "./Components/BookDialog";
-import BooksTable from "./Components/BooksTable";
+import BooksTable from "./BooksTable";
 import BooksToReadTable from "./Components/BooksToReadTable";
 import YearSelect from "./Components/YearSelect";
 import TabPanel from "./Components/TabPanel";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { compareObjects } from "./logic/utilities";
+
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -46,6 +46,13 @@ function App() {
       <Header />
       <Container>
         <Form />
+        <BooksTable books={books} />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <Tabs value={value} onChange={handleChange}>
           <Tab label="Książki przeczytane" />
           <Tab label="Książki do przeczytania" />

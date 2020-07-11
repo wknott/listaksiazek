@@ -41,16 +41,17 @@
 }
 .form__button {
   padding: 10px 20px;
-  text-align: center;
   color: #eee;
   background-color: #5f0a87;
   border: 0px;
   border-radius: 5px;
   margin: 0 auto;
+  transition: 0.2s;
+  text-transform: uppercase;
 }
 .form__button:hover {
-  background-color: hsl(281, 86%, 33%);
+  background-color: hsl(281, 86%, 38%);
 }
 .form__button:active {
-  background-color: hsl(281, 86%, 38%);
+  background-color: hsl(281, 86%, 48%);
 }
