@@ -46,7 +46,6 @@ function App() {
       <Header />
       <Container>
         <Form />
-        <BookDialog loadBooks={loadBooks} />
         <Tabs value={value} onChange={handleChange}>
           <Tab label="Książki przeczytane" />
           <Tab label="Książki do przeczytania" />
