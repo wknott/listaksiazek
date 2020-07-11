@@ -1,0 +1,6 @@
+.form__fieldset {
+  display: flex;
+}
+.form__label {
+  flex-basis: 300px;
+}

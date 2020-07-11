@@ -8,7 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import { compareObjects, formatDateStringShort } from "../utilities";
+import { compareObjects, formatDateStringShort } from "../logic/utilities";
 
 const useStyles = makeStyles({
   table: {
@@ -63,7 +63,7 @@ export default function BooksTable({ books, selectedYear }) {
               selectedYear === ""
                 ? 1 && book.hasOwnProperty("dateOfRead")
                 : new Date(book.dateOfRead).getFullYear() === selectedYear &&
-                  book.hasOwnProperty("dateOfRead")
+                book.hasOwnProperty("dateOfRead")
             )
             .map((book, index) => (
               <TableRow key={book.name}>
