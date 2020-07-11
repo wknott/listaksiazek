@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Container from "./Container";
+import Header from "./Header";
 import Topbar from "./Components/Topbar";
 import BookDialog from "./Components/BookDialog";
 import BooksTable from "./Components/BooksTable";
 import BooksToReadTable from "./Components/BooksToReadTable";
 import YearSelect from "./Components/YearSelect";
 import TabPanel from "./Components/TabPanel";
-import Container from "./Container"
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <>
-      <Topbar />
+      <Header />
       <Container>
         <div>
           <br />
