@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import Topbar from "./Components/Topbar";
 import BookDialog from "./Components/BookDialog";
 import BooksTable from "./Components/BooksTable";
