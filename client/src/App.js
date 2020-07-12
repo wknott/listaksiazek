@@ -17,21 +17,19 @@ function App() {
     return sortedBooks;
   };
 
-  async function loadBooks() {
-    try {
-      const res = await fetch("/api/books");
-      const newBooks = await res.json();
-      const sortedBooks = sortBooks(newBooks, "name");
-      setBooks(sortedBooks);
-    } catch (err) {
-      return err;
-    }
-  }
 
   useEffect(() => {
-    (async () => {
-      await loadBooks();
-    })();
+    async function loadBooks() {
+      try {
+        const res = await fetch("/api/books");
+        const newBooks = await res.json();
+        const sortedBooks = sortBooks(newBooks, "name");
+        setBooks(sortedBooks);
+      } catch (err) {
+        return err;
+      }
+    }
+    loadBooks();
   }, []);
 
   return (
