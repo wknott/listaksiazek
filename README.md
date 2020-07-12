@@ -14,7 +14,7 @@
 
 ## Demo
 
-[Book list demo](https://listaksiazek.herokuapp.com/)
+[Book list demo](https://listaksiazek-demo.herokuapp.com/)
 
 ## Description
 
