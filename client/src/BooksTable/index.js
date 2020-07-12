@@ -16,7 +16,7 @@ const BookTable = ({ books }) => (
         {books.map(({ name, author, dateOfRead }, index) => (
           <tr className="table__row" key={name}>
             <th className="table__cell table__cell--header" scope="row">{index + 1}</th>
-            <td className="table__cell" component="th" scope="row">
+            <td className="table__cell">
               {name}
             </td>
             <td className="table__cell">{author}</td>
