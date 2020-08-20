@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, LabelText, Input } from "./styled";
 
-const FormField = ({ labelText, placeholder, type, name, value, checked, onChange }) => (
+const FormField = ({ labelText, placeholder, type, name, value, checked, onChange, disabled }) => (
   <p>
     <Label type={type}>
       <LabelText>{labelText}:</LabelText>
