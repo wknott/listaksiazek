@@ -1,11 +1,11 @@
 import React from "react";
-import { Label, LabelText } from "./styled";
+import { Label, LabelText, Input } from "./styled";
 
 const FormField = ({ labelText, placeholder, type, name, value, checked, onChange }) => (
   <p>
     <Label type={type}>
       <LabelText>{labelText}:</LabelText>
-      <input
+      <Input
         className={`form__field form__field--${type}`}
         type={type}
         placeholder={placeholder}

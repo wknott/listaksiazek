@@ -19,3 +19,9 @@ export const Label = styled.label`
 export const LabelText = styled.span`
   font-size: 20px;
 `;
+
+export const Input = styled.input`
+  padding: 10px;
+  border: 2px solid #5f0a87;
+  border-radius: 5px;
+`;
