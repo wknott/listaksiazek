@@ -20,8 +20,9 @@ const BookTable = ({ books }) => (
               {name}
             </td>
             <td className="table__cell">{author}</td>
-            <td className={`table__cell${dateOfRead ? "" : " table__cell--unread"}`}>{dateOfRead ? formatDateStringShort(dateOfRead)
-              : "Przeczytana"}</td>
+            <td className={`table__cell${dateOfRead ? "" : " table__cell--unread"}`}>
+              {dateOfRead ? formatDateStringShort(dateOfRead) : "Oznacz jako przeczytana"}
+            </td>
           </tr>
         ))}
       </tbody>

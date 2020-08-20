@@ -6,14 +6,14 @@ const FormField = ({ labelText, placeholder, type, name, value, checked, options
       <span className="form__labelText">{labelText}:</span>
       {type === "select"
         ?
-        <select className="form__select" name={name} value={selectedOption}>
+        <select className="form__field" name={name} value={selectedOption}>
           {options.map(option => (
             <option key={option}>{option}</option>
           ))}
         </select>
         :
         <input
-          className={`form__input form__input--${type}`}
+          className={`form__field form__field--${type}`}
           type={type}
           placeholder={placeholder}
           name={name}

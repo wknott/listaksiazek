@@ -34,12 +34,12 @@
 .form__labelText {
   font-size: 20px;
 }
-.form__input {
+.form__field {
   padding: 10px;
   border: 2px solid #5f0a87;
   border-radius: 5px;
 }
-.form__input--checkbox:active {
+.form__field--checkbox:active {
   background-color: #5f0a87;
 }
 .form__button {
@@ -57,9 +57,4 @@
 }
 .form__button:active {
   background-color: hsl(281, 86%, 48%);
-}
-.form__select {
-  padding: 10px;
-  border: 2px solid #5f0a87;
-  border-radius: 5px;
 }
