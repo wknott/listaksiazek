@@ -8,9 +8,29 @@ const NewBookForm = () => {
   const [isRead, setIsRead] = useState(false);
   const [dateOfRead, setDateOfRead] = useState(new Date().toISOString().split('T')[0]);
 
-  console.log(dateOfRead)
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    if (isRead) {
+      const book = {
+        title: title,
+        author: author,
+        isRead: isRead,
+        dateOfRead: dateOfRead,
+      }
+      console.log(book)
+    }
+    else {
+      const book = {
+        title: title,
+        author: author,
+        isRead: isRead,
+      }
+      console.log(book)
+    }
+  }
+
   return (
-    <form>
+    <form onSubmit={onFormSubmit}>
       <Fieldset>
         <Legend>Nowa Książka</Legend>
         <FormField
