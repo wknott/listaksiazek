@@ -1,10 +1,10 @@
 import React from "react";
-import { Label } from "./styled";
+import { Label, LabelText } from "./styled";
 
 const FormField = ({ labelText, placeholder, type, name, value, checked, options, selectedOption, onChange }) => (
   <p>
     <Label type={type}>
-      <span className="form__labelText">{labelText}:</span>
+      <LabelText>{labelText}:</LabelText>
       {type === "select"
         ?
         <select className="form__field" name={name} value={selectedOption}>

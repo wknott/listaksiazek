@@ -15,3 +15,7 @@ export const Label = styled.label`
     `}
   }
 `;
+
+export const LabelText = styled.span`
+  font-size: 20px;
+`;
