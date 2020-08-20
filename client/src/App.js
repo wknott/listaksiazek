@@ -10,12 +10,11 @@ import { compareObjects } from "./logic/utilities";
 
 function App() {
   const [books, setBooks] = useState([]);
-
+  const [showRead, setShowRead] = useState(false);
   const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
     return sortedBooks;
   };
-
 
   useEffect(() => {
     async function loadBooks() {
@@ -54,7 +53,7 @@ function App() {
               selectedOption={2004}
             />
           </Form>
-          <BooksTable books={books} />
+          <BooksTable books={showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead)} />
         </Section>
       </Container>
     </>
