@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormField = ({ labelText, placeholder, type, name, value, checked, options, selectedOption }) => (
+const FormField = ({ labelText, placeholder, type, name, value, checked, options, selectedOption, onChange }) => (
   <p>
     <label className={`form__label form__label--${type}`}>
       <span className="form__labelText">{labelText}:</span>
@@ -20,6 +20,7 @@ const FormField = ({ labelText, placeholder, type, name, value, checked, options
           value={value}
           defaultChecked={checked}
           autoFocus
+          onChange={onChange}
         />}
     </label>
   </p>

@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Container from "./Container";
 import Header from "./Header";
-import Form from "./Form";
-import FormField from "./Form/FormField";
 import Section from "./Section";
 import BooksTable from "./BooksTable";
 import { compareObjects } from "./logic/utilities";
-
+import NewBookForm from "./NewBookForm";
 
 function App() {
   const [books, setBooks] = useState([]);
-  const [showRead, setShowRead] = useState(false);
+  const [showRead, setShowRead] = useState(true);
   const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
     return sortedBooks;
@@ -34,17 +32,25 @@ function App() {
     <>
       <Header />
       <Container>
-        <Form legendText="Nowa książka" buttonText="Dodaj książkę">
-          <FormField labelText="Tytuł" name="test" placeholder="Podaj tytuł książki" />
-          <FormField labelText="Autor" name="test" placeholder="Podaj autora" />
-          <FormField type="checkbox" labelText="Książka przeczytana" />
-          <FormField type="date" labelText="Data przeczytania" />
-          <FormField type="submit" labelText="Dodaj książkę" />
-        </Form>
+        <NewBookForm />
         <Section title="Twoja lista ksiażek">
-          <Form legendText="Ustawienia wyświetlania">
-            <FormField type="radio" labelText="Książki przeczytane" value="read" name="books" checked={true} />
-            <FormField type="radio" labelText="Książki do przeczytania" value="toRead" name="books" />
+          {/* <Form legendText="Ustawienia wyświetlania listy książek">
+            <FormField
+              type="radio"
+              labelText="Książki przeczytane"
+              value="read"
+              name="books"
+              checked={showRead === true}
+              onChange={() => setShowRead(true)}
+            />
+            <FormField
+              type="radio"
+              labelText="Książki do przeczytania"
+              value="toRead"
+              name="books"
+              checked={showRead === false}
+              onChange={() => setShowRead(false)}
+            />
             <FormField
               type="select"
               labelText="Wybierz rok"
@@ -52,7 +58,7 @@ function App() {
               options={[2001, 2004, 2005]}
               selectedOption={2004}
             />
-          </Form>
+          </Form> */}
           <BooksTable books={showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead)} />
         </Section>
       </Container>
