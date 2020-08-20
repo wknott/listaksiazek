@@ -1,8 +1,9 @@
 import React from "react";
+import { Label } from "./styled";
 
 const FormField = ({ labelText, placeholder, type, name, value, checked, options, selectedOption, onChange }) => (
   <p>
-    <label className={`form__label form__label--${type}`}>
+    <Label type={type}>
       <span className="form__labelText">{labelText}:</span>
       {type === "select"
         ?
@@ -22,7 +23,7 @@ const FormField = ({ labelText, placeholder, type, name, value, checked, options
           autoFocus
           onChange={onChange}
         />}
-    </label>
+    </Label>
   </p>
 )
 
