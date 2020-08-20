@@ -1,6 +1,6 @@
 import React from "react";
 import FormField from "../FormField/FormField";
-import { Fieldset, Legend } from "./styled";
+import { Fieldset, Legend, Button } from "./styled";
 
 const NewBookForm = () => {
   return (
@@ -11,7 +11,7 @@ const NewBookForm = () => {
         <FormField labelText="Autor" name="test" placeholder="Podaj autora" />
         <FormField type="checkbox" labelText="Książka przeczytana" />
         <FormField type="date" labelText="Data przeczytania" />
-        <button>Dodaj książkę</button>
+        <Button>Dodaj książkę</Button>
       </Fieldset>
     </form>
   )

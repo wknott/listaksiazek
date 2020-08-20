@@ -15,3 +15,22 @@ export const Legend = styled.legend`
   background-color: #5f0a87;
   border-radius: 5px;
 `;
+
+export const Button = styled.button`
+  padding: 10px 20px;
+  color: #eee;
+  background-color: #5f0a87;
+  border: 0px;
+  border-radius: 5px;
+  margin: 0 auto;
+  transition: 0.2s;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: hsl(281, 86%, 38%);
+  }
+  
+  &:active {
+    background-color: hsl(281, 86%, 48%);
+  }
+`;
