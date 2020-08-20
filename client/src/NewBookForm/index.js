@@ -6,7 +6,9 @@ const NewBookForm = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [isRead, setIsRead] = useState(false);
+  const [dateOfRead, setDateOfRead] = useState(new Date().toISOString().split('T')[0]);
 
+  console.log(dateOfRead)
   return (
     <form>
       <Fieldset>
@@ -30,7 +32,13 @@ const NewBookForm = () => {
           value={"checkbox"}
           onChange={() => setIsRead(!isRead)}
         />
-        {!isRead || <FormField type="date" labelText="Data przeczytania" />}
+        {!isRead ||
+          <FormField
+            type="date"
+            value={dateOfRead}
+            labelText="Data przeczytania"
+            onChange={({ target }) => setDateOfRead(target.value)}
+          />}
         <Button>Dodaj książkę</Button>
       </Fieldset>
     </form>
