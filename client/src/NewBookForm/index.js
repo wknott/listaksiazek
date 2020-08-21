@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormField from "../FormField/FormField";
 import { Fieldset, Legend, Button } from "./styled";
 
-const NewBookForm = () => {
+const NewBookForm = ({ addBook }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [isRead, setIsRead] = useState(false);
@@ -12,21 +12,24 @@ const NewBookForm = () => {
     event.preventDefault();
     if (isRead) {
       const book = {
-        title: title,
+        name: title,
         author: author,
         isRead: isRead,
         dateOfRead: dateOfRead,
       }
-      console.log(book)
+      addBook(book);
     }
     else {
       const book = {
-        title: title,
+        name: title,
         author: author,
         isRead: isRead,
       }
-      console.log(book)
+      addBook(book);
     }
+    setTitle("");
+    setAuthor("");
+    setIsRead(false);
   }
 
   return (

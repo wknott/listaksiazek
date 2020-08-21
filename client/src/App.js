@@ -9,10 +9,29 @@ import NewBookForm from "./NewBookForm";
 function App() {
   const [books, setBooks] = useState([]);
   const [showRead, setShowRead] = useState(true);
+
   const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
     return sortedBooks;
   };
+
+  const addBook = async (newBook) => {
+    try {
+      const res = await fetch("api/books", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newBook)
+      });
+      const data = await res.json();
+      setBooks((books) => [...books, newBook])
+      return data;
+    } catch (err) {
+      return err;
+    }
+  }
 
   useEffect(() => {
     async function loadBooks() {
@@ -32,7 +51,7 @@ function App() {
     <>
       <Header />
       <Container>
-        <NewBookForm />
+        <NewBookForm addBook={addBook} />
         <Section title="Twoja lista ksiażek">
           {/* <Form legendText="Ustawienia wyświetlania listy książek">
             <FormField
