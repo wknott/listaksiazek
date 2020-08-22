@@ -29,7 +29,6 @@ const NewBookForm = ({ addBook }) => {
     }
     setTitle("");
     setAuthor("");
-    setIsRead(false);
   }
 
   return (
