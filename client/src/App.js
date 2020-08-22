@@ -10,6 +10,7 @@ import SettingsForm from "./SettingsForm";
 function App() {
   const [books, setBooks] = useState([]);
   const [showRead, setShowRead] = useState(true);
+  const [selectedYear, setSelectedYear] = useState("Wszystkie");
 
   const sortBooks = (books, key) => {
     const sortedBooks = books.sort(compareObjects(key));
@@ -49,7 +50,16 @@ function App() {
   }, []);
 
   const getFilteredBooks = () => {
-    return showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
+    if (selectedYear === "Wszystkie") {
+      return showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
+    }
+    const filteredBooks = books.filter(book => new Date(book.dateOfRead).getFullYear() === +selectedYear);
+    return showRead ? filteredBooks.filter(book => book.dateOfRead) : filteredBooks.filter(book => !book.dateOfRead);
+  }
+
+  const getYears = () => {
+    const years = new Set(books.filter(book => book.dateOfRead !== undefined).map(book => new Date(book.dateOfRead).getFullYear()))
+    return ["Wszystkie", ...Array.from(years).sort()]
   }
 
   return (
@@ -58,10 +68,17 @@ function App() {
       <Container>
         <NewBookForm addBook={addBook} />
         <Section title="Twoja lista ksiażek">
-          <SettingsForm showRead={showRead} setShowRead={setShowRead} />
+          <SettingsForm
+            showRead={showRead}
+            setShowRead={setShowRead}
+            options={getYears()}
+            selectedYear={selectedYear}
+            setSelectedYear={setSelectedYear}
+          />
           <BooksTable books={getFilteredBooks()} />
         </Section>
       </Container>
+
     </>
   );
 }

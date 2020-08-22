@@ -3,7 +3,7 @@ import FormField from "../FormField/FormField";
 import { Fieldset, Legend } from "./styled";
 import Select from "./Select";
 
-const SettingsForm = ({ showRead, setShowRead }) => (
+const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelectedYear }) => (
   <form>
     <Fieldset>
       <Legend>Ustawienia wyświetlania listy książek</Legend>
@@ -24,8 +24,9 @@ const SettingsForm = ({ showRead, setShowRead }) => (
       <Select
         labelText="Wybierz rok"
         name="yearSelect"
-        options={[2001, 2004, 2005]}
-        selectedOption={2004}
+        options={options}
+        value={selectedYear}
+        onChange={({ target }) => setSelectedYear(target.value)}
       />
     </Fieldset>
   </form>
