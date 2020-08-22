@@ -5,6 +5,7 @@ import Section from "./Section";
 import BooksTable from "./BooksTable";
 import { compareObjects } from "./logic/utilities";
 import NewBookForm from "./NewBookForm";
+import SettingsForm from "./SettingsForm";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -47,38 +48,18 @@ function App() {
     loadBooks();
   }, []);
 
+  const getFilteredBooks = () => {
+    return showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
+  }
+
   return (
     <>
       <Header />
       <Container>
         <NewBookForm addBook={addBook} />
         <Section title="Twoja lista ksiażek">
-          {/* <Form legendText="Ustawienia wyświetlania listy książek">
-            <FormField
-              type="radio"
-              labelText="Książki przeczytane"
-              value="read"
-              name="books"
-              checked={showRead === true}
-              onChange={() => setShowRead(true)}
-            />
-            <FormField
-              type="radio"
-              labelText="Książki do przeczytania"
-              value="toRead"
-              name="books"
-              checked={showRead === false}
-              onChange={() => setShowRead(false)}
-            />
-            <FormField
-              type="select"
-              labelText="Wybierz rok"
-              name="yearSelect"
-              options={[2001, 2004, 2005]}
-              selectedOption={2004}
-            />
-          </Form> */}
-          <BooksTable books={showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead)} />
+          <SettingsForm showRead={showRead} setShowRead={setShowRead} />
+          <BooksTable books={getFilteredBooks()} />
         </Section>
       </Container>
     </>
