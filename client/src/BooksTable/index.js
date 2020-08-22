@@ -1,33 +1,34 @@
 import React from "react";
-import "./styles.css";
 import { formatDateStringShort } from "../logic/utilities";
+import { TableContainer, Table, TableRow, TableCell, TableHeader } from "./styled";
+
 const BookTable = ({ books }) => (
-  <div className="table__container">
-    <table className="table">
+  <TableContainer>
+    <Table>
       <thead>
-        <tr className="table__row">
-          <th className="table__cell table__cell--header" scope="col">#</th>
-          <th className="table__cell table__cell--header" scope="col">Tytuł</th>
-          <th className="table__cell table__cell--header" scope="col">Autor</th>
-          <th className="table__cell table__cell--header" scope="col">Data przeczytania</th>
-        </tr>
+        <TableRow>
+          <TableHeader scope="col">#</TableHeader>
+          <TableHeader scope="col">Tytuł</TableHeader>
+          <TableHeader scope="col">Autor</TableHeader>
+          <TableHeader scope="col">Data przeczytania</TableHeader>
+        </TableRow>
       </thead>
       <tbody>
         {books.map(({ name, author, dateOfRead }, index) => (
-          <tr className="table__row" key={name}>
-            <th className="table__cell table__cell--header" scope="row">{index + 1}</th>
-            <td className="table__cell">
+          <TableRow key={name}>
+            <TableHeader scope="row">{index + 1}</TableHeader>
+            <TableCell>
               {name}
-            </td>
-            <td className="table__cell">{author}</td>
-            <td className={`table__cell${dateOfRead ? "" : " table__cell--unread"}`}>
+            </TableCell>
+            <TableCell>{author}</TableCell>
+            <TableCell unread={!dateOfRead}>
               {dateOfRead ? formatDateStringShort(dateOfRead) : "Oznacz jako przeczytana"}
-            </td>
-          </tr>
+            </TableCell>
+          </TableRow>
         ))}
       </tbody>
-    </table>
-  </div>
+    </Table>
+  </TableContainer>
 )
 
 export default BookTable;
