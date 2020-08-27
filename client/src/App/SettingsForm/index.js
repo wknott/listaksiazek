@@ -1,5 +1,5 @@
 import React from "react";
-import FormField from "../FormField/FormField";
+import FormField from "../FormField";
 import { Fieldset, Legend } from "./styled";
 import Select from "./Select";
 

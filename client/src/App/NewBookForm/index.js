@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FormField from "../FormField/FormField";
+import FormField from "../FormField";
 import { Fieldset, Legend, Button } from "./styled";
 
 const NewBookForm = ({ addBook }) => {
