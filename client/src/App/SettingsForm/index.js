@@ -21,13 +21,15 @@ const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelecte
         checked={showRead === false}
         onChange={() => setShowRead(false)}
       />
-      <Select
-        labelText="Wybierz rok"
-        name="yearSelect"
-        options={options}
-        value={selectedYear}
-        onChange={({ target }) => setSelectedYear(target.value)}
-      />
+      {showRead &&
+        <Select
+          labelText="Wybierz rok"
+          name="yearSelect"
+          options={options}
+          value={selectedYear}
+          onChange={({ target }) => setSelectedYear(target.value)}
+        />
+      }
     </Fieldset>
   </form>
 )

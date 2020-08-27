@@ -50,7 +50,7 @@ function App() {
   }, []);
 
   const getFilteredBooks = () => {
-    if (selectedYear === "Wszystkie") {
+    if (selectedYear === "Wszystkie" || !showRead) {
       return showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
     }
     const filteredBooks = books.filter(book => new Date(book.dateOfRead).getFullYear() === +selectedYear);
