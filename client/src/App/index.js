@@ -30,8 +30,8 @@ function App() {
       const data = await res.json();
       setBooks((books) => [...books, newBook])
       return data;
-    } catch (err) {
-      return err;
+    } catch (error) {
+      console.error(error);
     }
   }
 

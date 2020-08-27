@@ -51,7 +51,6 @@ const NewBookForm = ({ addBook }) => {
           type="checkbox"
           labelText="Książka przeczytana"
           checked={isRead}
-          value={"checkbox"}
           onChange={() => setIsRead(!isRead)}
         />
         {!isRead ||
