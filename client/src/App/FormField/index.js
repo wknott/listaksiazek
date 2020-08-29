@@ -10,7 +10,7 @@ const FormField = ({ labelText, placeholder, type, name, value, checked, onChang
         placeholder={placeholder}
         name={name}
         value={value}
-        defaultChecked={checked}
+        checked={checked}
         onChange={onChange}
       />
     </Label>
