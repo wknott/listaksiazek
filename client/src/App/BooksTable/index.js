@@ -2,7 +2,7 @@ import React from "react";
 import { formatDateStringShort } from "../../logic/utilities";
 import { TableContainer, Table, TableRow, TableCell, TableHeader } from "./styled";
 
-const BookTable = ({ books, markAsRead }) => (
+const BookTable = ({ books, markAsRead: markBookAsRead }) => (
   <TableContainer>
     <Table>
       <thead>
@@ -21,7 +21,7 @@ const BookTable = ({ books, markAsRead }) => (
               {name}
             </TableCell>
             <TableCell>{author}</TableCell>
-            <TableCell unread={!dateOfRead} onClick={() => markAsRead(_id)}>
+            <TableCell unread={!dateOfRead} onClick={() => markBookAsRead(_id)}>
               {dateOfRead ? formatDateStringShort(dateOfRead) : "Oznacz jako przeczytana"}
             </TableCell>
           </TableRow>

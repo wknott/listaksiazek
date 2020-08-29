@@ -60,10 +60,11 @@ function App() {
     const years = new Set(books.filter(book => book.dateOfRead !== undefined).map(book => new Date(book.dateOfRead).getFullYear()))
     return ["Wszystkie", ...Array.from(years).sort()]
   }
-  const markAsRead = async (id) => {
+
+  const markBookAsRead = async (id) => {
     try {
       const changedBook = { ...books.find(book => book._id = id), dateOfRead: new Date() }
-      const res = await fetch("api/books/" + id, {
+      await fetch("api/books/" + id, {
         method: "PATCH",
         headers: {
           Accept: "application/json",
@@ -71,10 +72,8 @@ function App() {
         },
         body: JSON.stringify(changedBook)
       });
-      const data = await res.json();
-      const filteredBooks = [...books].map(book => book._id === id ? { ...book, dateOfRead: new Date() } : book)
+      const filteredBooks = [...books].map(book => book._id === id ? { ...book, dateOfRead: new Date() } : book);
       setBooks(filteredBooks)
-      return data;
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +92,7 @@ function App() {
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
           />
-          <BooksTable books={getFilteredBooks()} markAsRead={markAsRead} />
+          <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} />
         </Section>
       </Container>
 
