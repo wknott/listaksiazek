@@ -6,10 +6,10 @@ const bookSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  author: { 
+  author: {
     type: String,
     required: true
-  }, 
+  },
   dateOfRead: {
     type: Date
   }

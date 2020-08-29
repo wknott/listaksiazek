@@ -5,14 +5,13 @@ const cors = require('cors')
 app.use(cors())
 const path = require('path')
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
     req.headers['x-forwarded-proto'] === 'https' ? next() : res.redirect(`https://${req.headers.host}${req.originalUrl}`);
   });
 }
 const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017/listaksiazek";
-console.log(dbUrl)
-mongoose.connect(dbUrl, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connected to MongoDB'))
