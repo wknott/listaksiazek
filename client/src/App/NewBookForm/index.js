@@ -5,7 +5,7 @@ import { Fieldset, Legend, Button } from "./styled";
 const NewBookForm = ({ addBook }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [isRead, setIsRead] = useState(false);
+  const [isRead, setIsRead] = useState(true);
   const [dateOfRead, setDateOfRead] = useState(new Date().toISOString().split('T')[0]);
 
   const onFormSubmit = (event) => {
@@ -29,7 +29,6 @@ const NewBookForm = ({ addBook }) => {
     }
     setTitle("");
     setAuthor("");
-    setIsRead(false);
   }
 
   return (
