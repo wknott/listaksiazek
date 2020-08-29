@@ -27,9 +27,8 @@ function App() {
         },
         body: JSON.stringify(newBook)
       });
-      const data = await res.json();
-      setBooks((books) => [...books, newBook])
-      return data;
+      const newBookWithId = await res.json();
+      setBooks((books) => [...books, newBookWithId])
     } catch (error) {
       console.error(error);
     }
