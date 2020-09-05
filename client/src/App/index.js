@@ -10,7 +10,8 @@ function App() {
   const [books, setBooks] = useState([]);
   const [showRead, setShowRead] = useState(true);
   const [selectedYear, setSelectedYear] = useState("Wszystkie");
-
+  const [query, setQuery] = useState('');
+  const [searchedBooks, setSearchedBooks] = useState([]);
   const sortBooks = (books, key, direction = "asc") => {
     const sortedBooks = books.sort(compareObjects(key, direction));
     setBooks(sortedBooks);
@@ -48,9 +49,9 @@ function App() {
 
   const getFilteredBooks = () => {
     if (selectedYear === "Wszystkie" || !showRead) {
-      return showRead ? books.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
+      return showRead ? searchedBooks.filter(book => book.dateOfRead) : books.filter(book => !book.dateOfRead);
     }
-    const filteredBooks = books.filter(book => new Date(book.dateOfRead).getFullYear() === +selectedYear);
+    const filteredBooks = searchedBooks.filter(book => new Date(book.dateOfRead).getFullYear() === +selectedYear);
     return showRead ? filteredBooks.filter(book => book.dateOfRead) : filteredBooks.filter(book => !book.dateOfRead);
   }
 
@@ -80,6 +81,17 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (query && query.length > 0) {
+      setSearchedBooks(books.filter(book => !book.name.indexOf(query) || !book.author.indexOf(query)));
+    } else {
+      setSearchedBooks(books);
+    }
+  }, [query, books])
+
+  useEffect(() => {
+    setSearchedBooks(books);
+  }, [books])
   return (
     <>
       <Header />
@@ -91,6 +103,8 @@ function App() {
           options={getYears()}
           selectedYear={selectedYear}
           setSelectedYear={setSelectedYear}
+          query={query}
+          setQuery={setQuery}
         />
         <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} sortBooks={sortBooks} />
       </Container>

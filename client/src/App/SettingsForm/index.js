@@ -3,7 +3,7 @@ import FormField from "../FormField";
 import { Fieldset, Legend, StyledForm } from "./styled";
 import Select from "./Select";
 
-const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelectedYear }) => (
+const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelectedYear, query, setQuery }) => (
   <StyledForm>
     <Fieldset>
       <Legend>Ustawienia wyświetlania listy książek</Legend>
@@ -30,6 +30,12 @@ const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelecte
           onChange={({ target }) => setSelectedYear(target.value)}
         />
       }
+      <FormField
+        labelText="Wyszukaj"
+        value={query}
+        onChange={({ target }) => setQuery(target.value)}
+        placeholder="Wyszukaj książkę lub autora"
+      />
     </Fieldset>
   </StyledForm>
 )
