@@ -31,6 +31,9 @@ const BookTable = ({ books, markBookAsRead, sortBooks }) => {
   return (
     <TableContainer>
       <Table>
+        <caption>
+          Aby posortować tabelę, kliknij w nazwę kolumny
+        </caption>
         <thead>
           <TableRow>
             <TableHeader scope="col">#</TableHeader>
