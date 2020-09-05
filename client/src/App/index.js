@@ -12,9 +12,9 @@ function App() {
   const [showRead, setShowRead] = useState(true);
   const [selectedYear, setSelectedYear] = useState("Wszystkie");
 
-  const sortBooks = (books, key) => {
-    const sortedBooks = books.sort(compareObjects(key));
-    return sortedBooks;
+  const sortBooks = (books, key, direction = "asc") => {
+    const sortedBooks = books.sort(compareObjects(key, direction));
+    setBooks(sortedBooks);
   };
 
   const addBook = async (newBook) => {
@@ -39,8 +39,7 @@ function App() {
       try {
         const res = await fetch("/api/books");
         const newBooks = await res.json();
-        const sortedBooks = sortBooks(newBooks, "name");
-        setBooks(sortedBooks);
+        sortBooks(newBooks, "dateOfRead", "desc");
       } catch (err) {
         return err;
       }
@@ -95,7 +94,7 @@ function App() {
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
           />
-          <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} />
+          <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} sortBooks={sortBooks} />
         </Section>
       </Container>
     </>
