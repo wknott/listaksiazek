@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import BooksTable from "./BooksTable";
 import Container from "./Container";
 import Header from "./Header";
-import Section from "./Section";
 import { compareObjects } from "../logic/utilities";
 import NewBookForm from "./NewBookForm";
 import SettingsForm from "./SettingsForm";
