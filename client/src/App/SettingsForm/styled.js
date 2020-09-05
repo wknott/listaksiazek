@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const StyledForm = styled.form`
+  padding: 10px;
+`;
+
 export const Fieldset = styled.fieldset`
   display: flex;
   border: 2px solid #5f0a87;

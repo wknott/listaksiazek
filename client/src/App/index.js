@@ -86,16 +86,14 @@ function App() {
       <Header />
       <Container>
         <NewBookForm addBook={addBook} />
-        <Section title="Twoja lista ksiażek">
-          <SettingsForm
-            showRead={showRead}
-            setShowRead={setShowRead}
-            options={getYears()}
-            selectedYear={selectedYear}
-            setSelectedYear={setSelectedYear}
-          />
-          <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} sortBooks={sortBooks} />
-        </Section>
+        <SettingsForm
+          showRead={showRead}
+          setShowRead={setShowRead}
+          options={getYears()}
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+        />
+        <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} sortBooks={sortBooks} />
       </Container>
     </>
   );

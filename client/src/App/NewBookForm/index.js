@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FormField from "../FormField";
-import { Fieldset, Legend, Button } from "./styled";
+import { Fieldset, Legend, Button, StyledForm } from "./styled";
 
 const NewBookForm = ({ addBook }) => {
   const [title, setTitle] = useState("");
@@ -32,7 +32,7 @@ const NewBookForm = ({ addBook }) => {
   }
 
   return (
-    <form onSubmit={onFormSubmit}>
+    <StyledForm onSubmit={onFormSubmit}>
       <Fieldset>
         <Legend>Nowa Książka</Legend>
         <FormField
@@ -62,7 +62,7 @@ const NewBookForm = ({ addBook }) => {
           />}
         <Button>Dodaj książkę</Button>
       </Fieldset>
-    </form>
+    </StyledForm>
   )
 }
 

@@ -1,10 +1,10 @@
 import React from "react";
 import FormField from "../FormField";
-import { Fieldset, Legend } from "./styled";
+import { Fieldset, Legend, StyledForm } from "./styled";
 import Select from "./Select";
 
 const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelectedYear }) => (
-  <form>
+  <StyledForm>
     <Fieldset>
       <Legend>Ustawienia wyświetlania listy książek</Legend>
       <FormField
@@ -31,7 +31,7 @@ const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelecte
         />
       }
     </Fieldset>
-  </form>
+  </StyledForm>
 )
 
 export default SettingsForm;
