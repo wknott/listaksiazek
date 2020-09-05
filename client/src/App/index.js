@@ -61,19 +61,22 @@ function App() {
     return ["Wszystkie", ...Array.from(years).sort()]
   }
 
-  const markBookAsRead = async (id) => {
+  const markBookAsRead = async (_id) => {
     try {
-      const changedBook = { ...books.find(book => book._id = id), dateOfRead: new Date() }
-      await fetch("api/books/" + id, {
+      const { name, author, dateOfRead } = { ...books.find(book => book._id === _id), dateOfRead: new Date() }
+      const res = await fetch("api/books/" + _id, {
         method: "PATCH",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify(changedBook)
+        body: JSON.stringify({
+          name: name,
+          author: author,
+          dateOfRead: dateOfRead
+        })
       });
-      const filteredBooks = [...books].map(book => book._id === id ? { ...book, dateOfRead: new Date() } : book);
-      setBooks(filteredBooks)
+      const modifiedBook = await res.json();
+      setBooks(books => books.map(book => book._id === _id ? modifiedBook : book));
     } catch (error) {
       console.error(error);
     }
@@ -95,7 +98,6 @@ function App() {
           <BooksTable books={getFilteredBooks()} markBookAsRead={markBookAsRead} />
         </Section>
       </Container>
-
     </>
   );
 }
