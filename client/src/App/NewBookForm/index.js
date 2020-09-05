@@ -10,23 +10,12 @@ const NewBookForm = ({ addBook }) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    if (isRead) {
-      const book = {
-        name: title,
-        author: author,
-        isRead: isRead,
-        dateOfRead: dateOfRead,
-      }
-      addBook(book);
+    const book = {
+      name: title,
+      author: author,
+      isRead: isRead,
     }
-    else {
-      const book = {
-        name: title,
-        author: author,
-        isRead: isRead,
-      }
-      addBook(book);
-    }
+    isRead ? addBook({ ...book, dateOfRead: dateOfRead }) : addBook(book);
     setTitle("");
     setAuthor("");
   }
