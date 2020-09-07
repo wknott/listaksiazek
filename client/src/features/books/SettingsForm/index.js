@@ -1,7 +1,7 @@
 import React from "react";
-import FormField from "../FormField";
+import FormField from "../../../common/FormField";
 import { Fieldset, Legend, StyledForm } from "./styled";
-import Select from "./Select";
+import Select from "../../../common/Select";
 
 const SettingsForm = ({ showRead, setShowRead, options, selectedYear, setSelectedYear, query, setQuery }) => (
   <StyledForm>

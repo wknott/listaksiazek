@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatDateStringShort } from "../../logic/utilities";
+import { formatDateStringShort } from "../../../logic/utilities";
 import { TableContainer, Table, TableRow, TableCell, TableHeader } from "./styled";
 
 const BookTable = ({ books, markBookAsRead, sortBooks }) => {

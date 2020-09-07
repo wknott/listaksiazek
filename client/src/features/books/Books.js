@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import BooksTable from "./BooksTable";
-import Container from "./Container";
-import Header from "./Header";
-import { compareObjects } from "../logic/utilities";
+import Container from "../../common/Container";
+import Header from "../../common/Header";
+import { compareObjects } from "../../logic/utilities";
 import NewBookForm from "./NewBookForm";
 import SettingsForm from "./SettingsForm";
 
-function App() {
+function Books() {
   const [books, setBooks] = useState([]);
   const [showRead, setShowRead] = useState(true);
   const [selectedYear, setSelectedYear] = useState("Wszystkie");
@@ -113,4 +113,4 @@ function App() {
   );
 }
 
-export default App;
+export default Books;
