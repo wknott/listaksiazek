@@ -12,6 +12,7 @@ function App() {
   const [selectedYear, setSelectedYear] = useState("Wszystkie");
   const [query, setQuery] = useState('');
   const [searchedBooks, setSearchedBooks] = useState([]);
+
   const sortBooks = (books, key, direction = "asc") => {
     const sortedBooks = books.sort(compareObjects(key, direction));
     setBooks(sortedBooks);
