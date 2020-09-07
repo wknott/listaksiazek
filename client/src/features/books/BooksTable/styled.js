@@ -12,42 +12,42 @@ export const Table = styled.table`
 
 export const TableRow = styled.tr`
   &:nth-child(even){
-    background-color: #ddd;
+    background-color: ${({ theme }) => theme.colors.grey};
   }
 
   &:hover {
-    background-color: #ccc;
+    background-color: ${({ theme }) => theme.colors.darkGrey};
   }
 `;
 
 export const TableCell = styled.td`
-  border: 1px solid #eee;
+  border: 1px solid ${({ theme }) => theme.colors.lightGrey};
   padding: 15px;
   text-align: center;
 
   ${({ unread }) => unread && css`
-    color: #eee;
+    color: ${({ theme }) => theme.colors.lightGrey};
     text-transform: uppercase;
-    background-color: #5f0a87;
+    background-color: ${({ theme }) => theme.colors.violet};
     transition: 0.2s;
 
     &:hover{
-      background-color: hsl(281, 86%, 38%);
+      filter: brightness(110%);
     }
 
     &:active{
-      background-color: hsl(281, 86%, 48%);
+      filter: brightness(120%);
     }
   `}
 `;
 
 export const TableHeader = styled.th`
-  border: 1px solid #eee;
+  border: 1px solid ${({ theme }) => theme.colors.lightGrey};
   padding: 15px;
   text-align: center;
-  background-color: #5f0a87;
-  color: #fff;
+  background-color: ${({ theme }) => theme.colors.violet};
+  color: ${({ theme }) => theme.colors.lightText};
   &:hover{
-    background-color: hsl(281, 86%, 38%);
+    filter: brightness(110%);
   }
 `;

@@ -6,24 +6,24 @@ export const StyledForm = styled.form`
 
 export const Fieldset = styled.fieldset`
   display: flex;
-  border: 2px solid #5f0a87;
+  border: 2px solid ${({ theme }) => theme.colors.violet};
   border-radius: 20px;
   justify-content: center;
-  box-shadow: 0px 0px 5px 2px #5f0a87;
+  box-shadow: 0px 0px 5px 2px ${({ theme }) => theme.colors.violet};
 `;
 
 export const Legend = styled.legend`
   padding: 10px 20px;
   text-align: center;
-  color: #eee;
-  background-color: #5f0a87;
+  color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: ${({ theme }) => theme.colors.violet};
   border-radius: 5px;
 `;
 
 export const Button = styled.button`
   padding: 10px 20px;
-  color: #eee;
-  background-color: #5f0a87;
+  color: ${({ theme }) => theme.colors.lightGrey};
+  background-color: ${({ theme }) => theme.colors.violet};
   border: 0px;
   border-radius: 5px;
   margin: 0 auto;
@@ -31,10 +31,10 @@ export const Button = styled.button`
   text-transform: uppercase;
 
   &:hover {
-    background-color: hsl(281, 86%, 38%);
+    filter: brightness(110%);
   }
   
   &:active {
-    background-color: hsl(281, 86%, 48%);
+    filter: brightness(120%);
   }
 `;
