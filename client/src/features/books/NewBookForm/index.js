@@ -11,8 +11,8 @@ const NewBookForm = ({ addBook }) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     const book = {
-      name: title,
-      author: author,
+      name: title.trim(),
+      author: author.trim(),
       isRead: isRead,
     }
     isRead ? addBook({ ...book, dateOfRead: dateOfRead }) : addBook(book);
