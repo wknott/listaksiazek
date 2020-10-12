@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const TableContainer = styled.div`
     overflow-x: auto;
-    padding: 10px
+    padding: 10px;
 `;
 
 export const Table = styled.table`

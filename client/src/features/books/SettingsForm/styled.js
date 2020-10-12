@@ -5,7 +5,6 @@ export const StyledForm = styled.form`
 `;
 
 export const Fieldset = styled.fieldset`
-  display: flex;
   border: 2px solid ${({ theme }) => theme.colors.violet};
   border-radius: 20px;
   justify-content: center;
