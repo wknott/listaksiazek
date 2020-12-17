@@ -18,11 +18,11 @@
 
 ## Description
 
-A simple application that allows you to manage your book list. The app enable add, sort and toggle read book in your list.
+A simple application that allows you to manage your book list. The app enables adding, sorting and toggling read book on your list.
 
 ## Screenshot
 
-Soon...
+[![Lista książek](screenshot.png)](https://listaksiazek-demo.herokuapp.com/)
 
 ## Technologies
 
